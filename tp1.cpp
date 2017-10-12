@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <iosfwd>
 
 // ==========================================
 // Exercice 1                              ||
@@ -69,51 +70,85 @@ void concat(std::string& a, std::string& b , std::string& out) {
 // Exercice 3                              ||
 // ==========================================
 
+typedef int stack_content_t;
+struct node_type {
+    stack_content_t val;
+    node_type*     next;
+};
+
 class Stack {
 
-    typedef int stack_content_t;
-    struct node_type {
-        stack_content_t val;
-        node_type*      next;
-    };
-
 public:
-    Stack(){
 
+     node_type* getNode() const {
+        return element;
+    }
+
+    Stack(){
+        this->size_ = 0;
+        this->element = nullptr;
     }
 
     void push(const stack_content_t& x) {
-
+        node_type* nodeType = new node_type();
+        nodeType->val = x;
+        if(!empty()) {
+            nodeType->next = this->element;
+        }
+        else {
+            nodeType->next = nullptr;
+        }
+        this->size_++;
+        this->element = nodeType;
     }
 
     void pop() {
-
+        if(!empty()) {
+            node_type* n = element;
+            element = element->next;
+            delete(n);
+            size_--;
+        }
     }
 
     stack_content_t& top() const{
-
+        return this->element->val;
     }
 
     stack_content_t& top() {
-
+        return this->element->val;
     }
 
 
     void flush() {
-
+        while(!empty()) {
+            pop();
+        }
     }
 
     unsigned size() {
-
+        return size_;
     }
 
     bool empty() {
-
+        return this->size_ == 0;
     }
 
 private:
-
+    unsigned size_;
+    node_type* element;
 };
+
+std::ostream& operator<<(std::ostream& ostr, const Stack& s) {
+    ostr << "[ ";
+    node_type* n = s.getNode();
+    while (n != nullptr){
+        ostr << n->val << " ";
+        n = n->next;
+    }
+    ostr << "]" << std::endl;
+    return ostr;
+}
 
 int main() {
 
@@ -135,9 +170,9 @@ int main() {
     Stack s;
     s.push(10);
     s.push(20);
-    std::cout << s << std::endl; // affiche [ 20 10 ]
+    std::cout << s << std::endl;
     s.pop();
-    std::cout << s << std::endl; // affiche [ 10 ]
+    std::cout << s << std::endl;
     s.flush(); // release memory
 
     return 0;
