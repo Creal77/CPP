@@ -61,10 +61,59 @@ void swap(int& x, int& y) {
     y = tmp;
 }
 
-void swapString(std::string a, std::string b) {
-
+void concat(std::string& a, std::string& b , std::string& out) {
+    out = a + b;
 }
 
+// ==========================================
+// Exercice 3                              ||
+// ==========================================
+
+class Stack {
+
+    typedef int stack_content_t;
+    struct node_type {
+        stack_content_t val;
+        node_type*      next;
+    };
+
+public:
+    Stack(){
+
+    }
+
+    void push(const stack_content_t& x) {
+
+    }
+
+    void pop() {
+
+    }
+
+    stack_content_t& top() const{
+
+    }
+
+    stack_content_t& top() {
+
+    }
+
+
+    void flush() {
+
+    }
+
+    unsigned size() {
+
+    }
+
+    bool empty() {
+
+    }
+
+private:
+
+};
 
 int main() {
 
@@ -77,6 +126,19 @@ int main() {
     std::cout << "x = "<< x << " • " << "y = " << y << std::endl;
     swap(x, y);
     std::cout << "x = "<< x << " • " << "y = " << y << std::endl;
+    std::string a = "Yolo", b = "Mdr", c;
+    std::cout << "a = "<< a << " • b = " << b << " • c = " << c << std::endl;
+    concat(a, b, c);
+    std::cout << "c = "<< c << std::endl;
+
+    //Exercice 3
+    Stack s;
+    s.push(10);
+    s.push(20);
+    std::cout << s << std::endl; // affiche [ 20 10 ]
+    s.pop();
+    std::cout << s << std::endl; // affiche [ 10 ]
+    s.flush(); // release memory
 
     return 0;
 }
