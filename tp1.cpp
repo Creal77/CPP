@@ -1,6 +1,5 @@
 #include <iostream>
 #include <fstream>
-#include <iosfwd>
 
 // ==========================================
 // Exercice 1                              ||
