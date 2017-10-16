@@ -3,5 +3,8 @@ project(CPPLectures)
 
 set(CMAKE_CXX_STANDARD 11)
 
-set(SOURCE_FILES tp1.cpp Shape.cpp)
-add_executable(CPPLectures ${SOURCE_FILES})
+set(TP1_FILES tp1.cpp)
+add_executable(TP1 ${TP1_FILES})
+
+set(TP2_FILES Shape.cpp Circle.cpp Shape.h Circle.h tp2.cpp Square.cpp Square.h)
+add_executable(TP2 ${TP2_FILES})
