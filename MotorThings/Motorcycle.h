@@ -5,8 +5,11 @@
 #ifndef CPPLECTURES_MOTORCYCLE_H
 #define CPPLECTURES_MOTORCYCLE_H
 
+#include "TwoWheelVehicle.h"
+#include "MotorVehicle.h"
 
-class Motorcycle : public Motorcycle, public TwoWheelVehicle {
+class Motorcycle : public MotorVehicle, public TwoWheelVehicle {
+public :
     Motorcycle(const std::string& model);
     virtual void changeFrontWheel() const override;
     virtual void changeBackWheel() const override;

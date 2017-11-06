@@ -10,10 +10,19 @@
 
 class Vehicle {
 public:
-    Vehicle(const std::string& model);
-    virtual bool start() = 0;
-    virtual void stop() const = 0;
-};
+    Vehicle(const std::string &model)
+            : model_(model) {}
 
+    virtual bool start() = 0;
+
+    virtual void stop() const = 0;
+
+    std::string model() final {
+        return model_;
+    }
+
+protected:
+    std::string model_;
+};
 
 #endif //CPPLECTURES_VEHICLE_H
